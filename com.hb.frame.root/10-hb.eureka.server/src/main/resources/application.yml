@@ -1,0 +1,28 @@
+#
+spring:
+  application:
+    name: HB.EUREKA.SERVER
+#
+server:
+  port: 3333
+#
+eureka:
+  environment: dev
+  instance:
+    hostname: localhost
+    preferIpAddress: true
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port}
+  client:
+    #不要向注册中心注册自己
+    register-with-eureka: false
+    #禁止检索服务
+    fetch-registry: false
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka
+  server:
+    #过期实例应该启动并运行的时间间隔，单位为毫秒，默认为60 * 1000
+    eviction-interval-timer-in-ms: 4000
+    #打开保护机制
+    enable-self-preservation: true
+    #在Eureka服务器获取不到集群里对等服务器上的实例时，需要等待的时间，单位为毫秒，默认为1000 * 60 * 5
+    waitTimeInMsWhenSyncEmpty: 0
