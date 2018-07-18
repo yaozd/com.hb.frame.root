@@ -9,6 +9,8 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>1.1-hb.eureka.server</module>
+        <module>2.2-hb.order.service.inf</module>
+        <module>2.2-hb.order.service.provider</module>
     </modules>
     <packaging>pom</packaging>
     <description>hb project for Spring Cloud</description>
@@ -24,10 +26,18 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <spring-cloud.version>Finchley.RELEASE</spring-cloud.version>
+        <lombok-version>1.16.8</lombok-version>
+        <lombok-plugin-version>1.16.6.1</lombok-plugin-version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>com.hb.frame</groupId>
+                <artifactId>hb.order.service.inf</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+            <!--==================分割线========================-->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
@@ -35,7 +45,25 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>4.1.2</version>
+            </dependency>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok-version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
-
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok-maven-plugin</artifactId>
+                <version>${lombok-plugin-version}</version>
+            </plugin>
+        </plugins>
+    </build>
 </project>

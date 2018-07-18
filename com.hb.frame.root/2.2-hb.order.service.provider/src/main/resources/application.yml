@@ -1,0 +1,16 @@
+#
+spring:
+  application:
+    name: HB_ORDER_SERVICE_PROVIDER
+server:
+  port: 9000
+eureka:
+  instance:
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    lease-expiration-duration-in-seconds: 10
+    lease-renewal-interval-in-seconds: 5
+  client:
+    healthcheck:
+      enabled: true
+    serviceUrl:
+      defaultZone: http://peer1:8761/eureka/,http://peer2:8762/eureka/
