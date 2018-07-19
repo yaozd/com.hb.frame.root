@@ -11,6 +11,7 @@
         <module>1.1-hb.eureka.server</module>
         <module>2.2-hb.order.service.inf</module>
         <module>2.2-hb.order.service.provider</module>
+        <module>2.1-hb.insure.app.api</module>
     </modules>
     <packaging>pom</packaging>
     <description>hb project for Spring Cloud</description>
