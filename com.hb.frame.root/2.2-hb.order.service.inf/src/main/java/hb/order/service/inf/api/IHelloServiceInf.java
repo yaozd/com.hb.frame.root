@@ -6,8 +6,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-@RequestMapping("IHelloServiceInf")
 public interface IHelloServiceInf {
-    @RequestMapping(value = "world", method = RequestMethod.POST)
+    //解决：不要在接口类名上使用RequestMapping，虽然可以使用，
+    //但同时SpringMVC会把该接口的实例当作Controller开放出去，这个可以在启动的Mapping日志中查看到
+    final String SERVICE_INF_PATH="IHelloServiceInf/";
+    @RequestMapping(value = SERVICE_INF_PATH+"world", method = RequestMethod.POST)
     WorldBO world(@RequestBody WorldDTO user);
 }
