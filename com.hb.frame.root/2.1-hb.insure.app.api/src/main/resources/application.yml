@@ -16,5 +16,16 @@ eureka:
       defaultZone: http://peer1:8761/eureka/,http://peer2:8762/eureka/
 #
 ribbon:
+  #全局设置-请求超7s后超时-默认5s
+  ReadTimeout: 17000
+  #连接超10s后超时-默认2s
+  ConnectTimeout: 10000
+  #同一实例重试策略=尝试0次
+  MaxAutoRetries: 0
+  #失败0次之后才更换实例访问=失败后但不更换实例
+  MaxAutoRetriesNextServer: 1
+  #重试任何操作都不进行重试
+  #OkToRetryOnAllOperations: false 代表只有get模式才进行重试-post模式重试会出现脏数据-幂等问题
+  OkToRetryOnAllOperations: false
   eureka:
     enabled: true

@@ -5,6 +5,10 @@
 然后把两个启动项都启动起来，分别访问各自的端口
 eg:
 --spring.profiles.active=peer1
+===
+java -Xmx100m  -jar hb.eureka.server-1.0-SNAPSHOT.jar --spring.profiles.active=peer1
+java -Xmx100m  -jar hb.eureka.server-1.0-SNAPSHOT.jar --spring.profiles.active=peer2
+
 ~~~
 #### Eureka单点配置
 ~~~

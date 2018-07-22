@@ -21,4 +21,10 @@ public class HelloController {
         WorldBO worldBO=helloServiceBLL.world(worldDTO);
         return "=====WorldBO.getValue()="+worldBO.getValue();
     }
+    @RequestMapping("getUser")
+    public String getUser() {
+        String name="yzd";
+        String value=helloServiceBLL.getUser(name);
+        return value;
+    }
 }

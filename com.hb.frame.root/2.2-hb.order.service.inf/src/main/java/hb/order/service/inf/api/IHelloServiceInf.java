@@ -5,6 +5,7 @@ import hb.order.service.inf.dto.hello.WorldDTO;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 public interface IHelloServiceInf {
     //解决：不要在接口类名上使用RequestMapping，虽然可以使用，
@@ -14,4 +15,8 @@ public interface IHelloServiceInf {
     //
     @RequestMapping(value = SERVICE_INF_PATH+"world", method = RequestMethod.POST)
     WorldBO world(@RequestBody WorldDTO user);
+    //WorldBO world(WorldDTO user);//没用@RequestBody就无法接收数据
+    //
+    @RequestMapping(value = SERVICE_INF_PATH+"getUser", method = RequestMethod.GET)
+    String getUser(@RequestParam("name") String name);
 }

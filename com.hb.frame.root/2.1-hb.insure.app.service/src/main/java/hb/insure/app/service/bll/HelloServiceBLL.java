@@ -22,4 +22,13 @@ public class HelloServiceBLL {
     public WorldBO world(WorldDTO user){
         return helloRemote.world(user);
     }
+
+    /***
+     *
+     * @param name
+     * @return
+     */
+    public String getUser(String name){
+        return helloRemote.getUser(name);
+    }
 }
