@@ -12,6 +12,7 @@
         <module>2.2-hb.order.service.inf</module>
         <module>2.2-hb.order.service.provider</module>
         <module>2.1-hb.insure.app.api</module>
+        <module>2.1-hb.insure.app.service</module>
     </modules>
     <packaging>pom</packaging>
     <description>hb project for Spring Cloud</description>
@@ -36,6 +37,11 @@
             <dependency>
                 <groupId>com.hb.frame</groupId>
                 <artifactId>hb.order.service.inf</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.hb.frame</groupId>
+                <artifactId>hb.insure.app.service</artifactId>
                 <version>1.0-SNAPSHOT</version>
             </dependency>
             <!--==================分割线========================-->

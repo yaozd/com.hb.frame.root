@@ -37,3 +37,9 @@ eureka:
     #在Eureka服务器获取不到集群里对等服务器上的实例时，需要等待的时间，单位为毫秒，默认为1000 * 60 * 5
     waitTimeInMsWhenSyncEmpty: 0
 ~~~
+#### Feign配置遇到的bean not found问题
+~~~
+spring cloud配置遇到的bean not found问题
+https://www.jianshu.com/p/551c7c251f91
+@EnableFeignClients({"cn.tearn.demobsdk.restful"})
+~~~
