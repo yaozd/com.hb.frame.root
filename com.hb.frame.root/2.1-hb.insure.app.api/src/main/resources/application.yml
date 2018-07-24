@@ -17,7 +17,7 @@ eureka:
 #
 ribbon:
   #全局设置-请求超7s后超时-默认5s
-  ReadTimeout: 17000
+  ReadTimeout: 7000
   #连接超10s后超时-默认2s
   ConnectTimeout: 10000
   #同一实例重试策略=尝试0次
@@ -29,3 +29,10 @@ ribbon:
   OkToRetryOnAllOperations: false
   eureka:
     enabled: true
+#
+feign:
+  hystrix:
+    #开启熔断保护
+    enabled: true
+#关闭hystrix的执行超时功能，这样只设置ribbon的超时就可以
+hystrix.command.default.execution.timeout.enabled: false

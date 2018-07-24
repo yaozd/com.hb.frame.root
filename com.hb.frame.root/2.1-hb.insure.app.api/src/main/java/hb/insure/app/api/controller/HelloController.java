@@ -23,8 +23,16 @@ public class HelloController {
     }
     @RequestMapping("getUser")
     public String getUser() {
+        //模拟异常
+        //throwException();
         String name="yzd";
         String value=helloServiceBLL.getUser(name);
         return value;
+    }
+    private void throwException() {
+        Integer t1=1;
+        if(t1==1){
+            throw new IllegalStateException("模拟异常");
+        }
     }
 }

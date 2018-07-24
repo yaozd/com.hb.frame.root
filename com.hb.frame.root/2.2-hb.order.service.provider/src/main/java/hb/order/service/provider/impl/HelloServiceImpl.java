@@ -28,9 +28,18 @@ public class HelloServiceImpl implements IHelloServiceInf {
 
     @Override
     public String getUser(@RequestParam("name") String name) {
+        //模拟异常
+        throwException();
         //模拟超时
-        ThreadUtil.sleep(10, TimeUnit.SECONDS);
+        //ThreadUtil.sleep(10, TimeUnit.SECONDS);
         //
         return "hello->"+name;
+    }
+
+    private void throwException() {
+        Integer t1=1;
+        if(t1==1){
+            throw new IllegalStateException("模拟异常");
+        }
     }
 }
