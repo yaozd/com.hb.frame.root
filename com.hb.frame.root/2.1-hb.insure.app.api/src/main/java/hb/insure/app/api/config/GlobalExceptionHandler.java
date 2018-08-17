@@ -2,6 +2,7 @@ package hb.insure.app.api.config;
 
 import cn.hutool.crypto.SecureUtil;
 import com.netflix.hystrix.exception.HystrixRuntimeException;
+import hb.insure.app.api.utils.exceptionExt.ExceptionUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -42,10 +43,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
      * @return
      */
     private String getErrorMessageForInner(Exception ex) {
-        Exception exception = ex;
-        StringWriter writer = new StringWriter();
-        exception.printStackTrace(new PrintWriter(writer));
-        return writer.getBuffer().toString();
+        return ExceptionUtil.exceptionToString(ex);
     }
 
     @ExceptionHandler(HystrixRuntimeException.class)
