@@ -1,0 +1,1 @@
+java -Xmx100m  -jar hb.eureka.server-1.0-SNAPSHOT.jar --spring.profiles.active=peer2

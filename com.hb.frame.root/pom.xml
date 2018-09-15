@@ -13,6 +13,7 @@
         <module>2.2-hb.order.service.provider</module>
         <module>2.1-hb.insure.app.api</module>
         <module>2.1-hb.insure.app.service</module>
+        <module>1.2-hb.zuul.server</module>
     </modules>
     <packaging>pom</packaging>
     <description>hb project for Spring Cloud</description>

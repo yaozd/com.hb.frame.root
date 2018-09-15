@@ -1,0 +1,23 @@
+#
+spring:
+  application:
+    name: HB_ZUUL_SERVER
+server:
+  port: 8861
+#
+eureka:
+  instance:
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    lease-expiration-duration-in-seconds: 10
+    lease-renewal-interval-in-seconds: 5
+  client:
+    healthcheck:
+      enabled: true
+    serviceUrl:
+      defaultZone: http://peer1:8761/eureka/,http://peer2:8762/eureka/
+#
+zuul:
+  routes:
+    api-app:
+      path: /app/**
+      serviceId: HB-INSURE-APP-API

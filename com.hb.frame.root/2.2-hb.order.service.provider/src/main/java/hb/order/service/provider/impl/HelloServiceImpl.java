@@ -18,7 +18,7 @@ public class HelloServiceImpl implements IHelloServiceInf {
     @Override
     public WorldBO world(@RequestBody WorldDTO user) {
         //模拟超时
-        ThreadUtil.sleep(10, TimeUnit.SECONDS);
+        //ThreadUtil.sleep(10, TimeUnit.SECONDS);
         //
         String value="端口：" + port+ ";hello，this is first messge="+user.getName();
         WorldBO worldBO=new WorldBO();
