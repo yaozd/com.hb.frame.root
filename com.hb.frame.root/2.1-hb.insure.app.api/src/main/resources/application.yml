@@ -14,8 +14,11 @@ eureka:
       enabled: true
     serviceUrl:
       defaultZone: http://peer1:8761/eureka/,http://peer2:8762/eureka/
+    registry-fetch-interval-seconds: 5
 #
 ribbon:
+  #eureka客户端ribbon刷新时间（）
+  ServerListRefreshInterval: 1000
   #全局设置-请求超7s后超时-默认5s
   ReadTimeout: 7000
   #连接超10s后超时-默认2s
@@ -38,3 +41,4 @@ feign:
 hystrix.command.default.execution.timeout.enabled: false
 #设置APP接口的统一版本，用于重大的功能升级使用-此配置暂定（2018-09-15-1732）
 app.version: v1
+##
