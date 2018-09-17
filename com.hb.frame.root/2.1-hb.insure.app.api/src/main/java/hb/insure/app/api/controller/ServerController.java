@@ -61,16 +61,6 @@ public class ServerController {
     }
     @RequestMapping("fun2")
     public String fun2(){
-        getServiceList();
-        SpringClientFactory springClientFactory = SpringUtil2.getBean(SpringClientFactory.class);
-        ILoadBalancer loadBalancer = springClientFactory.getLoadBalancer("HB-ORDER-SERVICE-PROVIDER");
-        DynamicServerListLoadBalancer<DiscoveryEnabledServer> dynamicServerListLoadBalancer = (DynamicServerListLoadBalancer)loadBalancer;
-        dynamicServerListLoadBalancer.updateListOfServers();
-        String lis=FastJsonUtil.serialize(loadBalancer.getAllServers());
-        return "fun2"+lis;
-    }
-    @RequestMapping("fun3")
-    public String fun3(){
         try {
             Method method = DiscoveryClient.class.getDeclaredMethod("refreshRegistry");
             method.setAccessible(true);
@@ -83,6 +73,27 @@ public class ServerController {
         DynamicServerListLoadBalancer<DiscoveryEnabledServer> dynamicServerListLoadBalancer = (DynamicServerListLoadBalancer)loadBalancer;
         dynamicServerListLoadBalancer.updateListOfServers();
         String lis=FastJsonUtil.serialize(loadBalancer.getAllServers());
-        return "fun2"+lis;
+        //增量
+        //http://peer2:8762/eureka/apps/delta
+        return "fun2[refreshRegistry 增量数据拉取]\r\n"+lis;
+    }
+    @RequestMapping("fun3")
+    public String fun3(){
+        Object[] argspara=new Object[]{true};
+        try {
+            Method method = DiscoveryClient.class.getDeclaredMethod("getAndStoreFullRegistry");
+            method.setAccessible(true);
+            method.invoke(SpringUtil2.getBean(DiscoveryClient.class));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        SpringClientFactory springClientFactory = SpringUtil2.getBean(SpringClientFactory.class);
+        ILoadBalancer loadBalancer = springClientFactory.getLoadBalancer("HB-ORDER-SERVICE-PROVIDER");
+        DynamicServerListLoadBalancer<DiscoveryEnabledServer> dynamicServerListLoadBalancer = (DynamicServerListLoadBalancer)loadBalancer;
+        dynamicServerListLoadBalancer.updateListOfServers();
+        String lis=FastJsonUtil.serialize(loadBalancer.getAllServers());
+        //全量
+        //http://peer2:8762/eureka/apps
+        return "fun3[getAndStoreFullRegistry 全量数据拉取]\r\n"+lis;
     }
 }

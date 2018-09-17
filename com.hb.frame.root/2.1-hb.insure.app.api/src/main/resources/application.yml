@@ -13,7 +13,8 @@ eureka:
     healthcheck:
       enabled: true
     serviceUrl:
-      defaultZone: http://peer1:8761/eureka/,http://peer2:8762/eureka/
+      defaultZone: http://peer1:8761/eureka,http://peer2:8762/eureka
+    #从eureka服务器注册表中获取注册信息的时间间隔（s），默认为30秒
     registry-fetch-interval-seconds: 5
 #
 ribbon:
@@ -43,3 +44,4 @@ hystrix.command.default.execution.timeout.enabled: false
 #使用appPath设置：APP接口的统一版本，用于重大的功能升级使用-此配置暂定（2018-09-15-1732）
 appPath: v1
 ##
+#logging.level.ROOT: DEBUG
