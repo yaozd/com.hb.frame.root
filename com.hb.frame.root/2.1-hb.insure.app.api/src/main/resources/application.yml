@@ -39,6 +39,7 @@ feign:
     enabled: true
 #关闭hystrix的执行超时功能，这样只设置ribbon的超时就可以
 hystrix.command.default.execution.timeout.enabled: false
-#设置APP接口的统一版本，用于重大的功能升级使用-此配置暂定（2018-09-15-1732）
-app.version: v1
+
+#使用appPath设置：APP接口的统一版本，用于重大的功能升级使用-此配置暂定（2018-09-15-1732）
+appPath: v1
 ##

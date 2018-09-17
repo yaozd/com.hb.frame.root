@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/${app.version}/api/hello")
+@RequestMapping("/${appPath}/api/hello")
 public class HelloController {
     @Autowired
     HelloServiceBLL helloServiceBLL;
