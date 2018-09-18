@@ -9,6 +9,7 @@ registry是一个ConcurrentHashMap
 readWriteCacheMap失效过期后从registry重新读取注册服务信息
 3.(response-cache-update-interval-ms)
 readCacheMap，把readWriteCacheMap的缓存更新到readCacheMap
+(注：eureka服务器端数据增量更新的时间=清理时间【eviction-interval-timer-in-ms】+ 把readWriteCacheMap的缓存更新到readCacheMap【response-cache-update-interval-ms】)
 ==Eureka客户端
 4.(registry-fetch-interval-seconds)
 client读取的是readCacheMap，client刷新本地缓存
@@ -18,6 +19,9 @@ client刷新ribbon本地缓存
 ### eureka服务注册和服务发现时间配置
 - [eureka服务注册和服务发现时间配置](https://www.2cto.com/kf/201804/739965.html)
 - [深入理解Eureka缓存机制](https://blog.csdn.net/u012394095/article/details/80894140)
+- [spring eureka 服务实例实现快速下线快速感知快速刷新配置解析](https://blog.csdn.net/zhxdick/article/details/78560993?from=singlemessage)
+- [Spring Cloud 极端续租间隔时间的影响](https://mp.weixin.qq.com/s/6iSw2FnvdkupisDWgFUbnQ)
+- [Eureka强制下线](https://blog.csdn.net/u012394095/article/details/80996172)
 
 ```
 原因分析
@@ -76,3 +80,10 @@ UNKNOWN： 未知状态
 容器启动
 在容器刚刚启动，实例化instance信息的时候，默认状态为STARTING
 ````
+### Eureka-RESTFUL接口
+```
+//增量
+//http://peer2:8762/eureka/apps/delta
+//全量
+//http://peer2:8762/eureka/apps
+```
