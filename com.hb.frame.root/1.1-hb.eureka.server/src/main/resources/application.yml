@@ -40,7 +40,8 @@ eureka:
     # readWriteCacheMap失效过期后从registry重新读取注册服务信息
     response-cache-auto-expiration-in-seconds: 3000
     # readCacheMap，把readWriteCacheMap的缓存更新到readCacheMap
-    response-cache-update-interval-ms: 1000
+    #（考虑到GC问题：把1秒调整为2秒）
+    response-cache-update-interval-ms: 2000
     #
     use-read-only-response-cache: true
     #注：eureka服务器端数据增量更新的时间=清理时间【eviction-interval-timer-in-ms】+ 把readWriteCacheMap的缓存更新到readCacheMap【response-cache-update-interval-ms】
@@ -69,7 +70,8 @@ eureka:
     # readWriteCacheMap失效过期后从registry重新读取注册服务信息
     response-cache-auto-expiration-in-seconds: 3000
     # readCacheMap，把readWriteCacheMap的缓存更新到readCacheMap
-    response-cache-update-interval-ms: 1000
+    #（考虑到GC问题：把1秒调整为2秒）
+    response-cache-update-interval-ms: 2000
     #
     use-read-only-response-cache: true
     #注：eureka服务器端数据增量更新的时间=清理时间【eviction-interval-timer-in-ms】+ 把readWriteCacheMap的缓存更新到readCacheMap【response-cache-update-interval-ms】

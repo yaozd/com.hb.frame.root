@@ -3,6 +3,9 @@
 Eureka服务注册和服务发现流程
 
 ==Eureka服务端
+0.
+清理时间【eviction-interval-timer-in-ms】
+把registry中的数据，刷新到readWriteCacheMap中
 1.
 registry是一个ConcurrentHashMap
 2.(response-cache-auto-expiration-in-seconds)
@@ -13,13 +16,15 @@ readCacheMap，把readWriteCacheMap的缓存更新到readCacheMap
 ==Eureka客户端
 4.(registry-fetch-interval-seconds)
 client读取的是readCacheMap，client刷新本地缓存
+拉取增量信息更新到client的本地缓存
 5.(ServerListRefreshInterval)
 client刷新ribbon本地缓存
+把client本地缓存中的增量信息更新到ribbon中
 ```
 ### eureka服务注册和服务发现时间配置
 - [eureka服务注册和服务发现时间配置](https://www.2cto.com/kf/201804/739965.html)
 - [深入理解Eureka缓存机制](https://blog.csdn.net/u012394095/article/details/80894140)
-- [spring eureka 服务实例实现快速下线快速感知快速刷新配置解析](https://blog.csdn.net/zhxdick/article/details/78560993?from=singlemessage)
+- [spring eureka 服务实例实现快速下线快速感知快速刷新配置解析-byArvin推荐参考](https://blog.csdn.net/zhxdick/article/details/78560993?from=singlemessage)
 - [Spring Cloud 极端续租间隔时间的影响](https://mp.weixin.qq.com/s/6iSw2FnvdkupisDWgFUbnQ)
 - [Eureka强制下线](https://blog.csdn.net/u012394095/article/details/80996172)
 
@@ -72,7 +77,7 @@ DOWN： 表示服务已经宕机，无法继续提供服务
 
 UP ： 服务正常运行
 
-OUT_OF_SERVICE : 不再提供服务，其他的Eureka Client将调用不到该服务，一般有人为的调用接口设置的，如：强制下线。
+OUT_OF_SERVICE : 不再提供服务，但其服务依然正常运行，其他的Eureka Client将调用不到该服务，一般有人为的调用接口设置的，如：强制下线。
 
 UNKNOWN： 未知状态
 
@@ -81,9 +86,43 @@ UNKNOWN： 未知状态
 在容器刚刚启动，实例化instance信息的时候，默认状态为STARTING
 ````
 ### Eureka-RESTFUL接口
+- [增量-http://peer2:8762/eureka/apps/delta](http://peer2:8762/eureka/apps/delta)
+- [全量-http://peer2:8762/eureka/apps](http://peer2:8762/eureka/apps)
 ```
 //增量
 //http://peer2:8762/eureka/apps/delta
 //全量
 //http://peer2:8762/eureka/apps
+```
+### Eureka强制下线-线上项目发版时使用
+- [Eureka强制下线](https://blog.csdn.net/u012394095/article/details/80996172)
+
+```
+eg:
+postman put http://peer2:8762/eureka/apps/HB-INSURE-APP-API/192.168.0.229:9001/status?value=OUT_OF_SERVICE
+postman put http://peer2:8762/eureka/apps/HB-ORDER-SERVICE-PROVIDER/192.168.0.229:9000/status?value=OUT_OF_SERVICE
+===
+实现方式
+调用接口：/eureka/apps/appID/instanceID/status?value=OUT_OF_SERVICE
+调用示例：http://101.37.33.252:8083/eureka/apps/EUREKA-1/10.28.144.127:17101/status?value=OUT_OF_SERVICE
+调用方式：PUT
+```
+### Eureka线上发版流程（此功能需要开发相应管理界面）
+```
+一：Eureka服务端操作
+1.服务强制下线
+OUT_OF_SERVICE : 不再提供服务，但其服务依然正常运行
+postman put http://peer2:8762/eureka/apps/HB-ORDER-SERVICE-PROVIDER/192.168.0.229:9000/status?value=OUT_OF_SERVICE
+2.查看全量与增量信息中是否已经更新完成
+//增量
+//http://peer2:8762/eureka/apps/delta
+//全量
+//http://peer2:8762/eureka/apps
+===
+二：Eureka客户端操作
+1.手工拉取增量信息，快速刷新服务列表
+http://localhost:9001/api/server/fun2
+2.验证（此验证只是在单服务下）
+http://localhost:9001/v1/api/hello/world
+3.关闭程序（不要使用kill 9关闭。）
 ```
