@@ -5,6 +5,8 @@ spring:
     name: HB-INSURE-APP-API
   profiles:
     active: dev
+  favicon:
+    enabled: false
 server:
   port: 9009
 eureka:
@@ -48,5 +50,7 @@ hystrix.command.default.execution.timeout.enabled: false
 appPath: v1
 ##
 #logging.level.ROOT: DEBUG
+#调试验证重试策略-打印访问路径--主要用于测试
+logging.level.org.springframework.web.servlet.DispatcherServlet: debug
 #logback path
 logging.config: classpath:logback-spring.xml
