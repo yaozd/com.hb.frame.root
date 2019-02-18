@@ -1,9 +1,12 @@
 #
+# dev环境只控制台输出
 spring:
   application:
     name: HB-INSURE-APP-API
+  profiles:
+    active: dev
 server:
-  port: 9001
+  port: 9009
 eureka:
   instance:
     instance-id: ${spring.cloud.client.ip-address}:${server.port}
@@ -45,3 +48,5 @@ hystrix.command.default.execution.timeout.enabled: false
 appPath: v1
 ##
 #logging.level.ROOT: DEBUG
+#logback path
+logging.config: classpath:logback-spring.xml

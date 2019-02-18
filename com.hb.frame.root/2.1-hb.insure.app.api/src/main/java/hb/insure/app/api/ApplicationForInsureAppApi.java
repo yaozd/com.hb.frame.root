@@ -17,7 +17,7 @@ import org.springframework.context.annotation.ComponentScan;
 @EnableDiscoveryClient //开启eureka服务
 @EnableHystrix//开启Hystrix:使用EnableCircuitBreaker或者 EnableHystrix 表明Spring boot工程启用hystrix,两个注解是等价的
 @EnableFeignClients("hb.insure.app.service.remote")//开启feigin注解
-@ComponentScan("hb.insure.app.api,hb.insure.app.service")
+@ComponentScan({"hb.insure.app.api","hb.insure.app.service"})
 public class ApplicationForInsureAppApi {
 
     public static void main(String[] args) {

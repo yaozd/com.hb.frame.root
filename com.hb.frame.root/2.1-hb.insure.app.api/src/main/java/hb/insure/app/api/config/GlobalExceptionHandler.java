@@ -51,7 +51,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     ResponseEntity<?> handleControllerExceptionForHystrix(HttpServletRequest request, Throwable ex) {
         HttpStatus status = getStatus(request);
         String errorMessage = getErrorMessageForHystrix(ex);
-        logger.error("handleControllerExceptionForHystrix-异常详细信息:",errorMessage);
+        logger.error("handleControllerExceptionForHystrix-异常详细信息:"+errorMessage);
         return ResponseEntity.status(status).body(errorMessage);
         //logger.error("HystrixRuntimeException:",ex);
         //return ResponseEntity.status(status).body(ex);

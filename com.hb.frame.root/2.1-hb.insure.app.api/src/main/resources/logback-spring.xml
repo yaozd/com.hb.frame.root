@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+    <springProperty scope="context" name="appName" source="spring.application.name" />
+    <springProperty scope="context" name="ip" source="spring.cloud.client.ip-address" />
+    <property name="logFile" value="com.yzd.web.api" />
+    <property name="logPath" value="/data/log" />
+    <property name="logPattern" value="[ELK=][${ip},${appName},%X{X-B3-TraceId},%X{X-B3-SpanId},%X{X-B3-ParentSpanId}]-[%d{yyyy-MM-dd HH:mm:ss.SSS}]├%thread┤[%level]-[%logger]- %msg|%n"/>
+    <logger name="org.springframework.web" level="INFO"/>
+    <appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符-->
+            <pattern>${logPattern}</pattern>
+        </encoder>
+    </appender>
+    <!--Logging in Spring Boot-->
+    <!--https://www.baeldung.com/spring-boot-logging-->
+    <appender name="RollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${logPath}/${logFile}.log</file>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <Pattern>${logPattern}</Pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- rollover daily and when the file reaches 10 MegaBytes -->
+            <fileNamePattern>${logPath}/archived/${logFile}.log.%i.%d{yyyy-MM-dd}</fileNamePattern>
+            <!--日志文件最大的大小-->
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>10MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <!--日志文件保留天数-->
+            <maxHistory>30</maxHistory>
+            <!-- 当前版本bug，需要1.1.8才修复 -->
+            <totalSizeCap>20GB</totalSizeCap>
+        </rollingPolicy>
+    </appender>
+    <!--logback高级特性使用(三) 异步记录日志-->
+    <!--https://blog.csdn.net/shayanxiang/article/details/43194373-->
+    <appender name="asyncFileAppender" class="ch.qos.logback.classic.AsyncAppender">
+        <discardingThreshold>0</discardingThreshold>
+        <queueSize>512</queueSize>
+        <appender-ref ref="RollingFile"/>
+    </appender>
+    <springProfile name="dev">
+        <root level="INFO">
+            <appender-ref ref="consoleAppender"/>
+        </root>
+    </springProfile>
+    <springProfile name="junit">
+        <root level="INFO">
+            <appender-ref ref="consoleAppender"/>
+            <appender-ref ref="asyncFileAppender"/>
+        </root>
+    </springProfile>
+    <springProfile name="test">
+        <root level="INFO">
+            <appender-ref ref="asyncFileAppender"/>
+        </root>
+    </springProfile>
+    <!--生产环境不要进行控制台输出，控制台输出是阻塞线程,严重影响性能-->
+    <springProfile name="pro">
+        <root level="INFO">
+            <appender-ref ref="asyncFileAppender"/>
+        </root>
+    </springProfile>
+</configuration>
