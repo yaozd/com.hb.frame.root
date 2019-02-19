@@ -1,1 +1,1 @@
-java -Xmx100m  -jar hb.zipkin.server-1.0-SNAPSHOT.jar
+java -Xmx100m  -jar hb.zipkin.server-1.0-SNAPSHOT.jar 
