@@ -29,6 +29,7 @@ spring-boot-starter-actuator是一套监控的功能，可以监控程序在运�
 ```
 
 > 参考代码
+- [https://github.com/yaozd/spring-cloud-study-1](https://github.com/yaozd/spring-cloud-study-1)-[config-eureka]-eureka自动发现-推荐使用-byArvin
 - [https://github.com/yaozd/spring-cloud-study-1](https://github.com/yaozd/spring-cloud-study-1)-[config-git]-Git 版与动态刷新
 ```
 更新-必须POST
