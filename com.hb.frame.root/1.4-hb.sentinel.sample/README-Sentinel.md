@@ -21,3 +21,7 @@ java -jar -Dcsp.sentinel.api.port=8720 -Dcsp.sentinel.dashboard.server=localhost
 [Dubbo使用Sentinel来对服务进行降级与限流-推荐参考byArvin](https://blog.csdn.net/pwh19920920/article/details/85252203)<br>
 [sentinel-dubbo](https://github.com/pwh19920920/sentinel-dubbo)<br>
 [sentinel-dubbo-备份yzd](https://github.com/yaozd/sentinel-dubbo)<br>
+[sentinel控制台监控数据持久化【InfluxDB】-推荐参考byArvin](https://www.cnblogs.com/cdfive2018/p/9914838.html)<br>
+[cdfive/Sentinel-数据持久化InfluxDB](https://github.com/cdfive/Sentinel/tree/winxuan_develop/sentinel-dashboard)<br>
+[cdfive/Sentinel-数据持久化InfluxDB-备份yzd](https://github.com/yaozd/Sentinel)<br>
+
