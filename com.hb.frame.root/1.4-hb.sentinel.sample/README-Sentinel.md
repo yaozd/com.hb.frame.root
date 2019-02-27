@@ -1,4 +1,15 @@
 
+> [Sentinel 控制台-帮助文档](https://github.com/alibaba/Sentinel/wiki/控制台)
+```
+java -Dserver.port=8080 -Dcsp.sentinel.dashboard.server=localhost:8080 -Dproject.name=sentinel-dashboard -jar sentinel-dashboard.jar
+
+java -Dserver.port=8080 -Dcsp.sentinel.dashboard.server=localhost:8080 -Dproject.name=sentinel-dashboard -jar sentinel-dashboard-1.4.2.jar
+
+java -jar  -Dserver.port=8080 -Dcsp.sentinel.api.port=8720 -Dcsp.sentinel.dashboard.server=localhost:8080 -Dproject.name=sentinel-dashboard .\sentinel-dashboard-1.4.2.jar
+----------------
+sentinel-dashboard-1.4.2.jar=》百度云=》软件开发-JAVA=》J-S-Sentinel-流量控制=》sentinel-dashboard-1.4.2-bak-2019-02-27-1156.zip
+```
+
 > 
 [Sentinel-Wiki-中文](https://github.com/alibaba/Sentinel/wiki/主流框架的适配)<br>
 [Sentinel-如何使用](https://github.com/alibaba/Sentinel/wiki/如何使用)<br>
