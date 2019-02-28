@@ -10,6 +10,16 @@ java -jar  -Dserver.port=8080 -Dcsp.sentinel.api.port=8720 -Dcsp.sentinel.dashbo
 sentinel-dashboard-1.4.2.jar=》百度云=》软件开发-JAVA=》J-S-Sentinel-流量控制=》sentinel-dashboard-1.4.2-bak-2019-02-27-1156.zip
 ```
 
+> [sentinel控制台监控数据持久化【InfluxDB】-代码实现-github-地址](https://github.com/yaozd/Sentinel/tree/dev-yzd)
+```
+分支：dev-yzd
+https://github.com/yaozd/Sentinel/tree/dev-yzd
+https://github.com/yaozd/Sentinel/tree/dev-yzd
+参考：
+sentinel控制台监控数据持久化【InfluxDB】-推荐参考byArvin
+https://www.cnblogs.com/cdfive2018/p/9914838.html
+```
+
 > 
 [Sentinel-Wiki-中文](https://github.com/alibaba/Sentinel/wiki/主流框架的适配)<br>
 [Sentinel-如何使用](https://github.com/alibaba/Sentinel/wiki/如何使用)<br>
