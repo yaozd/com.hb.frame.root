@@ -19,6 +19,11 @@ https://github.com/yaozd/Sentinel/tree/dev-yzd
 sentinel控制台监控数据持久化【InfluxDB】-推荐参考byArvin
 https://www.cnblogs.com/cdfive2018/p/9914838.html
 ```
+InfluxDB-按照时间查询
+```
+select * from sentinel_metric where time >='2019-11-01T10:00:00Z' 
+select count(*) from sentinel_metric where time >='2019-11-01T10:00:00Z' 
+```
 
 > 
 [Sentinel-Wiki-中文](https://github.com/alibaba/Sentinel/wiki/主流框架的适配)<br>

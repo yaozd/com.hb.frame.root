@@ -7,8 +7,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("api/foo")
 public class FooController {
+    @GetMapping("hello")
+    public String hello() {
+        return "=====api.foo.hello="+System.currentTimeMillis();
+    }
     @GetMapping("world")
     public String world() {
         return "=====api.foo.world="+System.currentTimeMillis();
     }
+
 }
