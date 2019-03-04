@@ -1,3 +1,5 @@
+> 使用场景--特别重要
+- [详解spring cloud config实现datasource的热部署](https://www.jb51.net/article/132978.htm)
 
 > github仓库
 - [https://github.com/yaozd/spring-cloud-study-1](https://github.com/yaozd/spring-cloud-study-1)
@@ -78,3 +80,5 @@ http://localhost:12000/config-client,config/dev
 ---
 config-client,config 代表配置文件的名称
 ```
+> 问题参考：
+- [注意！@RefreshScope和 @Configuration在同一类上使用有冲突](https://www.jianshu.com/p/35172d7cb157)
