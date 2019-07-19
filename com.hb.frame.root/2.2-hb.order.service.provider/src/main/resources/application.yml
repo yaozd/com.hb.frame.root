@@ -21,6 +21,7 @@ server:
   port: 9000
 eureka:
   instance:
+    preferIpAddress: true #以IP地址注册到服务中心
     instance-id: ${spring.cloud.client.ip-address}:${server.port}
     lease-expiration-duration-in-seconds: 10
     lease-renewal-interval-in-seconds: 5

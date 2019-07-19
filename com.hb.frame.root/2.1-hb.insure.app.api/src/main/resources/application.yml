@@ -7,6 +7,17 @@ spring:
     active: dev
   favicon:
     enabled: false
+    # 文件大小限制
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 200MB
+  jackson:
+    # jackson返回时间问题
+    date-format: yyyy-MM-dd HH:mm:ss
+    # jackson忽略空值
+    default-property-inclusion: non_null
+    time-zone: GMT+8
   #指定抽样比例
   sleuth.sampler.probability: 1.0
   zipkin:
@@ -23,6 +34,7 @@ server:
   port: 9009
 eureka:
   instance:
+    preferIpAddress: true #以IP地址注册到服务中心
     instance-id: ${spring.cloud.client.ip-address}:${server.port}
     lease-expiration-duration-in-seconds: 10
     lease-renewal-interval-in-seconds: 5
